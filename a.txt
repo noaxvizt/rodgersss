@@ -1,1 +1,25 @@
-first 3 done
+n = int(input())
+lis = []
+answer = [[0 for i in range(n)] for j in range(n)]
+
+
+def delete(x, y):
+    global answer
+    for i in range(n):
+        answer[x][i] = not answer[x][i]
+        answer[i][y] = not answer[i][y]
+    answer[x][y] = not answer[x][y]
+
+
+for i in range(n):
+    lis.append(list(map(int, input().split())))
+
+for i in range(n):
+    for j in range(n):
+        if lis[i][j]:
+            delete(i, j)
+
+for i in range(n):
+    for j in range(n):
+        if answer[i][j]:
+            print(i * n + j + 1, end=' ')
